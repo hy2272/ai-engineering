@@ -45,6 +45,19 @@ make run-eval-retriever      # RAGAS eval over the LangSmith dataset (Week 1)
 - FastAPI docs: http://localhost:8000/docs
 - Qdrant: http://localhost:6333
 
+## Data & citation
+
+This project uses the Amazon Reviews 2023 dataset (McAuley Lab, UC San Diego). The dataset is **not** included in this repo (it's gitignored — download it separately). If you use this work, please cite:
+
+```
+@article{hou2024bridging,
+  title={Bridging Language and Items for Retrieval and Recommendation},
+  author={Hou, Yupeng and Li, Jiacheng and He, Zhankui and Yan, An and Chen, Xiusi and McAuley, Julian},
+  journal={arXiv preprint arXiv:2403.03952},
+  year={2024}
+}
+```
+
 ---
 
 Built by coding along the bootcamp. Scaffolding (Streamlit UI + FastAPI split) is based on the course prerequisites repo.
