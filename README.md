@@ -1,38 +1,36 @@
-# End-to-End AI Engineering Bootcamp — Week 1
+# End-to-End AI Engineering Bootcamp — my work
 
-My work for Week 1 of the [End-to-End AI Engineering Bootcamp](https://maven.com/swirl-ai/end-to-end-ai-engineering): an end-to-end RAG system over an Amazon products dataset, made observable with LangSmith and evaluated with RAGAS.
+My work across the [End-to-End AI Engineering Bootcamp](https://maven.com/swirl-ai/end-to-end-ai-engineering) by Aurimas Griciunas ([SwirlAI](https://www.newsletter.swirlai.com/)).
 
-## What's in here
+**Stack:** Qdrant (vector DB) · OpenAI (embeddings + LLM) · LangSmith (tracing + eval datasets) · RAGAS (eval metrics) · FastAPI · Streamlit · uv · Docker Compose
 
-The RAG system is built and evaluated step by step:
+## Weeks
 
-- `notebooks/week_1/` — the build, notebook by notebook:
-  - `01` — explore & sample the Amazon products dataset
-  - `02` — preprocess & embed items, index them into Qdrant
-  - `03` — RAG pipeline (retrieve → augment → generate)
-  - `04` — observability with LangSmith tracing
-  - `05` — build a synthetic eval dataset in LangSmith
-  - `06` — evaluate retrieval & generation with RAGAS
-- `apps/api/` — the pipeline + eval productionized as runnable modules (FastAPI service + `evals/`)
+| Week | What I built | Code |
+|------|--------------|------|
+| 1 | End-to-end RAG over an Amazon products dataset: explore/sample → index into Qdrant → RAG pipeline → LangSmith observability → synthetic eval dataset → RAGAS evaluation | [`notebooks/week_1`](notebooks/week_1) · tag `week-1-complete` |
+
+> Each week's code accumulates on `main`; a `week-N-complete` tag freezes that week's snapshot. Browse a week by its tag, e.g. `git checkout week-1-complete`.
+
+## Repo layout
+
+- `notebooks/<week>/` — the build, notebook by notebook
+- `apps/api/` — pipeline + eval productionized as runnable modules (FastAPI service + `evals/`)
 - `apps/chatbot_ui/` — Streamlit frontend
-
-## Stack
-
-Qdrant (vector DB) · OpenAI (embeddings + LLM) · LangSmith (tracing + eval datasets) · RAGAS (eval metrics) · FastAPI · Streamlit · uv · Docker Compose
 
 ## Setup
 
 ```bash
-cp env.example .env
+cp env.example .env   # then fill in your keys
 ```
 
-Then fill in `.env`. Keys used in Week 1:
+Keys used so far:
 
 ```
 OPENAI_API_KEY=your_openai_api_key
 GOOGLE_API_KEY=your_google_api_key
 GROQ_API_KEY=your_groq_api_key
-LANGSMITH_API_KEY=your_langsmith_api_key   # for tracing + eval datasets
+LANGSMITH_API_KEY=your_langsmith_api_key   # tracing + eval datasets
 LANGSMITH_TRACING=true
 ```
 
@@ -40,7 +38,7 @@ LANGSMITH_TRACING=true
 
 ```bash
 make run-docker-compose      # Qdrant + FastAPI + Streamlit
-make run-eval-retriever      # run the RAGAS eval over the LangSmith dataset
+make run-eval-retriever      # RAGAS eval over the LangSmith dataset (Week 1)
 ```
 
 - Streamlit UI: http://localhost:8501
@@ -49,4 +47,4 @@ make run-eval-retriever      # run the RAGAS eval over the LangSmith dataset
 
 ---
 
-Built by coding along the bootcamp by Aurimas Griciunas ([SwirlAI](https://www.newsletter.swirlai.com/)). Scaffolding (Streamlit UI + FastAPI split) is based on the course prerequisites repo.
+Built by coding along the bootcamp. Scaffolding (Streamlit UI + FastAPI split) is based on the course prerequisites repo.
