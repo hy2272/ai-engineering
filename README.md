@@ -1,58 +1,52 @@
-# ai-engineering-bootcamp-prerequisites
+# End-to-End AI Engineering Bootcamp — Week 1
 
-Welcome to the prerequisites repository for the [End-to-End AI Engineering Bootcamp](https://maven.com/swirl-ai/end-to-end-ai-engineering)! This repository is dedicated to setting up your development environment and scafoling a simple project with a StreamLit UI frontend service decoupled from FastAPI server.
+My work for Week 1 of the [End-to-End AI Engineering Bootcamp](https://maven.com/swirl-ai/end-to-end-ai-engineering): an end-to-end RAG system over an Amazon products dataset, made observable with LangSmith and evaluated with RAGAS.
 
-We strongly recomend you coding along the videos available in our YouTube channel rather than just cloning the repository and running the code.
+## What's in here
 
----
+The RAG system is built and evaluated step by step:
 
-[Video 1](https://youtu.be/3WsEgLtwsGs): Setting up your development environment
+- `notebooks/week_1/` — the build, notebook by notebook:
+  - `01` — explore & sample the Amazon products dataset
+  - `02` — preprocess & embed items, index them into Qdrant
+  - `03` — RAG pipeline (retrieve → augment → generate)
+  - `04` — observability with LangSmith tracing
+  - `05` — build a synthetic eval dataset in LangSmith
+  - `06` — evaluate retrieval & generation with RAGAS
+- `apps/api/` — the pipeline + eval productionized as runnable modules (FastAPI service + `evals/`)
+- `apps/chatbot_ui/` — Streamlit frontend
 
-[Video 2](https://youtu.be/cGOGA7GFecI): Build and containerise your first chatbot
+## Stack
 
-[Video 3](https://youtu.be/bZHaCAFAUCs): Moving the agent behind a FastAPI server
+Qdrant (vector DB) · OpenAI (embeddings + LLM) · LangSmith (tracing + eval datasets) · RAGAS (eval metrics) · FastAPI · Streamlit · uv · Docker Compose
 
-[Video 4](https://youtu.be/IcbzksbMhuM): Containerising Backend and Frontend
+## Setup
 
----
-
-
-If you do need to run the code, this is how:
-
-- Clone the repository.
-- Run:
 ```bash
 cp env.example .env
 ```
 
-Edit `.env` and add your API keys:
+Then fill in `.env`. Keys used in Week 1:
 
 ```
-OPENAI_API_KEY=your_google_api_key
+OPENAI_API_KEY=your_openai_api_key
 GOOGLE_API_KEY=your_google_api_key
 GROQ_API_KEY=your_groq_api_key
+LANGSMITH_API_KEY=your_langsmith_api_key   # for tracing + eval datasets
+LANGSMITH_TRACING=true
 ```
-Keep the remaining configuration as per ```.env.example```.
 
-
-#### To run the project, execute:
+## Run
 
 ```bash
-make run-docker-compose
+make run-docker-compose      # Qdrant + FastAPI + Streamlit
+make run-eval-retriever      # run the RAGAS eval over the LangSmith dataset
 ```
 
-Streamlit application: http://localhost:8501
+- Streamlit UI: http://localhost:8501
+- FastAPI docs: http://localhost:8000/docs
+- Qdrant: http://localhost:6333
 
-FastAPI documentation: http://localhost:8000/docs
+---
 
-
-
-## Contact
-
-If you have any questions, feel free to contact me via aurimas@swirlai.com
-
-You can also find me on:
-
-- 🔗 [LinkedIn](https://www.linkedin.com/in/aurimas-griciunas)
-- 🔗 [X](https://x.com/Aurimas_Gr)
-- 🔗 [Newsletter](https://www.newsletter.swirlai.com/)
+Built by coding along the bootcamp by Aurimas Griciunas ([SwirlAI](https://www.newsletter.swirlai.com/)). Scaffolding (Streamlit UI + FastAPI split) is based on the course prerequisites repo.
